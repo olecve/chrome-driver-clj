@@ -1,2 +1,7 @@
 # chrome-driver-clj
-chrome driver downloader
+
+The library create to download and init chrome driver
+
+## Usage
+
+FIXME
