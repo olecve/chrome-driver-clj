@@ -1,6 +1,6 @@
 # chrome-driver-clj
 
-The library create to download and init chrome driver
+The small helper library that helps to download and init chrome driver.
 
 ## Usage
 
