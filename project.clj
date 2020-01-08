@@ -4,4 +4,6 @@
   :dependencies [[org.clojure/clojure "1.10.0"]]
   :plugins [[lein-nsorg "0.3.0"]]
   :repl-options {:init-ns chrome-driver-clj.core}
+  :deploy-repositories [["releases" :clojars]
+                        ["snapshots" :clojars]]
   :aliases {"nsorg" ["nsorg" "--replace"]})
