@@ -10,7 +10,8 @@
   (chrome-driver/clean)
   (System/clearProperty location-key)
   (f)
-  (System/clearProperty location-key))
+  (System/clearProperty location-key)
+  (chrome-driver/clean))
 
 (use-fixtures :once with-clean-property-fixture)
 

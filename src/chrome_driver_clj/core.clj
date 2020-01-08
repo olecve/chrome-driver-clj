@@ -20,7 +20,9 @@
 (defn- unzip [absolute-path-to-zip absolute-path]
   (let [zip-stream (ZipInputStream. (io/input-stream absolute-path-to-zip))]
     (.getNextEntry zip-stream)
-    (io/copy (io/input-stream zip-stream) (io/file absolute-path))))
+    (io/copy (io/input-stream zip-stream) (io/file absolute-path))
+    (.closeEntry zip-stream)
+    (.close zip-stream)))
 
 (defn- file-exists? [absolute-path]
   (.exists (io/as-file absolute-path)))
