@@ -17,7 +17,7 @@
 
 (defn- download-driver [os version path-to-zip]
   (copy
-    (str "http://chromedriver.storage.googleapis.com/" version "/chromedriver_" os ".zip")
+    (str root-uri version "/chromedriver_" os ".zip")
     path-to-zip))
 
 (defn- unzip [absolute-path-to-zip absolute-path]
