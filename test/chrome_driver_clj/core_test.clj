@@ -1,6 +1,6 @@
 (ns chrome-driver-clj.core-test
-  (:require [clojure.test :refer :all]
-            [chrome-driver-clj.core :refer :all]))
+  (:require [chrome-driver-clj.core :refer :all]
+            [clojure.test :refer :all]))
 
 (deftest a-test
   (testing "FIXME, I fail."
