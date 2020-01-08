@@ -29,7 +29,7 @@
     (includes? os-name "win") {:file-name (str "chromedriver-" driver-version ".exe") :os "win32"}
     (includes? os-name "nux") {:file-name (str "chromedriver-" driver-version) :os "linux64"}
     (includes? os-name "mac") {:file-name (str "chromedriver-" driver-version) :os "mac64"}
-    :else (throw (Exception. "Can't recognize operating system"))))
+    :else (throw (RuntimeException. "Can't identify operating system"))))
 
 (defn- locate-driver [driver-version]
   (let [os-name (-> "os.name" System/getProperty lower-case)
