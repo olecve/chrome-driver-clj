@@ -1,4 +1,4 @@
-(defproject chrome-driver-clj "0.1.0"
+(defproject chrome-driver-clj "0.1.1"
   :description "chrome driver downloader"
   :url "https://github.com/olecve/chrome-driver-clj"
   :dependencies [[org.clojure/clojure "1.10.0"]
