@@ -1,6 +1,6 @@
 (ns chrome-driver-clj.core-test
-  (:require [clojure.java.io :as io]
-            [chrome-driver-clj.core :as chrome-driver]
+  (:require [chrome-driver-clj.core :as chrome-driver]
+            [clojure.java.io :as io]
             [clojure.test :refer :all]))
 
 (def location-key "webdriver.chrome.driver")

@@ -1,6 +1,7 @@
 (ns chrome-driver-clj.core
   (:require [clojure.java.io :as io]
-            [clojure.string :refer [includes? lower-case]])
+            [clojure.string :refer [includes? lower-case]]
+            [taoensso.timbre :refer [info]])
   (:import (java.io File)
            (java.util.zip ZipInputStream)))
 
@@ -35,12 +36,12 @@
     :else (throw (RuntimeException. "Can't identify operating system"))))
 
 (defn- download-driver [os driver-version zip bin]
-  (println (str "[ Downloading chrome driver for " os " with version " driver-version " ]"))
+  (info "Downloading chrome driver for" os "with version" driver-version)
   (download (create-driver-uri os driver-version) zip)
-  (println "[ Driver is downloaded, unzipping... ]")
+  (info "Driver is downloaded, unzipping...")
   (unzip zip bin)
   (.setExecutable (io/file bin) true)
-  (println "[ Driver is ready ]"))
+  (info "Driver is ready"))
 
 (defn- locate-or-download-driver [version]
   (let [os-name (-> "os.name" System/getProperty lower-case)
