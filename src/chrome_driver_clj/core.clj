@@ -1,7 +1,8 @@
 (ns chrome-driver-clj.core
   (:require [clojure.java.io :as io]
             [clojure.string :refer [includes? lower-case]])
-  (:import (java.io File)))
+  (:import (java.io File)
+           (java.util.zip ZipInputStream)))
 
 (def ^:private driver-version "78.0.3904.70")
 (def ^:private temp-dir (System/getProperty "java.io.tmpdir"))
@@ -17,7 +18,7 @@
     path-to-zip))
 
 (defn- unzip [absolute-path-to-zip absolute-path]
-  (let [zip-stream (java.util.zip.ZipInputStream. (io/input-stream absolute-path-to-zip))]
+  (let [zip-stream (ZipInputStream. (io/input-stream absolute-path-to-zip))]
     (.getNextEntry zip-stream)
     (io/copy (io/input-stream zip-stream) (io/file absolute-path))))
 
