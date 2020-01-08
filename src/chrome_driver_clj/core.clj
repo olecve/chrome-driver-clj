@@ -9,16 +9,12 @@
 (def ^:private latest-release-version-uri (str root-uri "LATEST_RELEASE"))
 
 (defn- get-latest-release-version [] (slurp latest-release-version-uri))
+(defn- create-driver-uri [os driver-version] (str root-uri driver-version "/chromedriver_" os ".zip"))
 
-(defn- copy [uri file]
+(defn- download [uri file]
   (with-open [in (io/input-stream uri)
               out (io/output-stream file)]
     (io/copy in out)))
-
-(defn- download-driver [os version path-to-zip]
-  (copy
-    (str root-uri version "/chromedriver_" os ".zip")
-    path-to-zip))
 
 (defn- unzip [absolute-path-to-zip absolute-path]
   (let [zip-stream (ZipInputStream. (io/input-stream absolute-path-to-zip))]
@@ -43,7 +39,7 @@
     (when-not (file-exists? path-to-driver)
       (do
         (println (str "[ Downloading chrome driver for " os " with version " driver-version " ]"))
-        (download-driver os driver-version path-to-zip)
+        (download (create-driver-uri os driver-version) path-to-zip)
         (println "[ Driver is downloaded, unzipping... ]")
         (unzip path-to-zip path-to-driver)
         (.setExecutable (io/file path-to-driver) true)
