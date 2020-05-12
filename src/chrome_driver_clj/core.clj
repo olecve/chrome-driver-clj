@@ -54,12 +54,15 @@
      :zip         zip
      :file-exists file-exists}))
 
-(defn init []
-  (let [version (get-latest-release-version)
-        paths (locate-or-download-driver version)]
-    (System/setProperty location-key (:bin paths))
-    (merge paths
-           {:version version})))
+(defn init!
+  ([]
+   (init! {:version (get-latest-release-version)}))
+  ([options]
+   (let [version (:version options)
+         paths (locate-or-download-driver version)]
+     (System/setProperty location-key (:bin paths))
+     (merge paths
+            {:version version}))))
 
 (defn clean []
   (let [files (->> temp-dir
