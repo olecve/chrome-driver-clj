@@ -5,6 +5,7 @@
   (:import (java.io File)
            (java.util.zip ZipInputStream)))
 
+(def ^:private monitor (Object.))
 (def ^:private location-key "webdriver.chrome.driver")
 (def ^:private temp-dir (System/getProperty "java.io.tmpdir"))
 (def ^:private root-uri "http://chromedriver.storage.googleapis.com/")
@@ -59,7 +60,7 @@
    (init! {:version (get-latest-release-version)}))
   ([options]
    (let [version (:version options)
-         paths (locate-or-download-driver version)]
+         paths (locking monitor (locate-or-download-driver version))]
      (System/setProperty location-key (:bin paths))
      (merge paths
             {:version version}))))
