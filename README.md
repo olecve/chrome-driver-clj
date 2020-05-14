@@ -8,7 +8,7 @@
 
 [![Clojars Project](https://img.shields.io/clojars/v/chrome-driver-clj.svg)](https://clojars.org/chrome-driver-clj)
 
-The small helper library that helps to download and init chrome driver.
+The small library that helps to download and init chrome driver.
 
 ## Usage
 
